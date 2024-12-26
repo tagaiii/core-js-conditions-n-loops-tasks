@@ -66,8 +66,14 @@ function getMaxNumber(a, b, c) {
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  */
-function canQueenCaptureKing(/* queen, king */) {
-  throw new Error('Not implemented');
+function canQueenCaptureKing(queen, king) {
+  if (queen.x === king.x || queen.y === king.y) {
+    return true;
+  }
+  if (Math.abs(queen.x - king.x) === Math.abs(queen.y - king.y)) {
+    return true;
+  }
+  return false;
 }
 
 /**
@@ -162,8 +168,13 @@ function isPalindrome(/* str */) {
  *  'qwerty', 'Q'     => -1
  *  'qwerty', 'p'     => -1
  */
-function getIndexOf(/* str, letter */) {
-  throw new Error('Not implemented');
+function getIndexOf(str, letter) {
+  for (let i = 0; i < str.length; i += 1) {
+    if (str[i] === letter) {
+      return i;
+    }
+  }
+  return -1;
 }
 
 /**
@@ -281,8 +292,22 @@ function sortByAsc(/* arr */) {
  *  '012345', 3 => '024135' => '043215' => '031425'
  *  'qwerty', 3 => 'qetwry' => 'qtrewy' => 'qrwtey'
  */
-function shuffleChar(/* str, iterations */) {
-  throw new Error('Not implemented');
+function shuffleChar(str, iterations) {
+  let shuffledStr = str;
+  const { length } = str;
+  for (let count = 0; count < iterations; count += 1) {
+    let evenChars = '';
+    let oddChars = '';
+    for (let i = 0; i < length; i += 1) {
+      if (i % 2 === 0) {
+        evenChars += shuffledStr[i];
+      } else {
+        oddChars += shuffledStr[i];
+      }
+    }
+    shuffledStr = evenChars + oddChars;
+  }
+  return shuffledStr;
 }
 
 /**
