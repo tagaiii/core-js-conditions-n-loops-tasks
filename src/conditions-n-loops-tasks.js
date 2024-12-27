@@ -295,17 +295,20 @@ function sortByAsc(/* arr */) {
 function shuffleChar(str, iterations) {
   let shuffledStr = str;
   const { length } = str;
-  for (let count = 0; count < iterations; count += 1) {
-    let evenChars = '';
-    let oddChars = '';
-    for (let i = 0; i < length; i += 1) {
-      if (i % 2 === 0) {
-        evenChars += shuffledStr[i];
-      } else {
-        oddChars += shuffledStr[i];
-      }
+  let count = 0;
+  while (count !== iterations) {
+    let result = '';
+    for (let i = 0; i < length; i += 2) {
+      result += shuffledStr[i];
     }
-    shuffledStr = evenChars + oddChars;
+    for (let i = 1; i < length; i += 2) {
+      result += shuffledStr[i];
+    }
+    shuffledStr = result;
+    count += 1;
+    if (shuffledStr === str) {
+      count = iterations - (iterations % count);
+    }
   }
   return shuffledStr;
 }
