@@ -167,8 +167,94 @@ function convertToRomanNumerals(num) {
  *  '10,5'    => 'one zero point five'
  *  '1950.2'  => 'one nine five zero point two'
  */
-function convertNumberToString(/* numberStr */) {
-  throw new Error('Not implemented');
+function convertNumberToString(numberStr) {
+  let result = '';
+  for (let i = 0; i < numberStr.length; i += 1) {
+    switch (numberStr[i]) {
+      case '-':
+        result += 'minus';
+        break;
+      case '.':
+        result += ' point';
+        break;
+      case ',':
+        result += ' point';
+        break;
+      case '0':
+        if (i !== 0) {
+          result += ' zero';
+        } else {
+          result += 'zero';
+        }
+        break;
+      case '1':
+        if (i !== 0) {
+          result += ' one';
+        } else {
+          result += 'one';
+        }
+        break;
+      case '2':
+        if (i !== 0) {
+          result += ' two';
+        } else {
+          result += 'two';
+        }
+        break;
+      case '3':
+        if (i !== 0) {
+          result += ' three';
+        } else {
+          result += 'three';
+        }
+        break;
+      case '4':
+        if (i !== 0) {
+          result += ' four';
+        } else {
+          result += 'four';
+        }
+        break;
+      case '5':
+        if (i !== 0) {
+          result += ' five';
+        } else {
+          result += 'five';
+        }
+        break;
+      case '6':
+        if (i !== 0) {
+          result += ' six';
+        } else {
+          result += 'six';
+        }
+        break;
+      case '7':
+        if (i !== 0) {
+          result += ' seven';
+        } else {
+          result += 'seven';
+        }
+        break;
+      case '8':
+        if (i !== 0) {
+          result += ' eight';
+        } else {
+          result += 'eight';
+        }
+        break;
+      case '9':
+        if (i !== 0) {
+          result += ' nine';
+        } else {
+          result += 'nine';
+        }
+        break;
+      default:
+        break;
+    }
+  }
+  return result;
 }
 
 /**
@@ -292,8 +378,37 @@ function getBalanceIndex(arr) {
  *          [10, 9,  8,  7]
  *        ]
  */
-function getSpiralMatrix(/* size */) {
-  throw new Error('Not implemented');
+function getSpiralMatrix(size) {
+  const arr = [];
+  for (let i = 0; i < size; i += 1) {
+    arr[i] = [];
+    for (let j = 0; j < size; j += 1) {
+      arr[i][j] = undefined;
+    }
+  }
+  arr[Math.floor(size / 2)][Math.floor(size / 2)] = size ** 2;
+  let currNum = 1;
+  let turn = 0;
+  while (currNum <= size ** 2) {
+    for (let i = turn; i < size - turn; i += 1) {
+      arr[turn][i] = currNum;
+      currNum += 1;
+    }
+    for (let i = turn + 1; i < size - turn; i += 1) {
+      arr[i][size - turn - 1] = currNum;
+      currNum += 1;
+    }
+    for (let i = size - turn - 2; i > turn - 1; i -= 1) {
+      arr[size - turn - 1][i] = currNum;
+      currNum += 1;
+    }
+    for (let i = size - turn - 2; i > turn; i -= 1) {
+      arr[i][turn] = currNum;
+      currNum += 1;
+    }
+    turn += 1;
+  }
+  return arr;
 }
 
 /**
